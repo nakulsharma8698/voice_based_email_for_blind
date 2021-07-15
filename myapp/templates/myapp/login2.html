@@ -1,0 +1,118 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<!--<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">-->
+<!--===============================================================================================-->
+	<script src="{% static '/js/script.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/base.css' %}">
+<style>
+	button{
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+body{
+    background: #9053c7;
+    background: -webkit-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -o-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: -moz-linear-gradient(-135deg, #c850c0, #4158d0);
+  background: linear-gradient(-135deg, #c850c0, #4158d0);
+}
+</style>
+
+</head>
+<body style="background-color: aliceblues;" >
+	<button class="display-1" style="height: 750px; width:1550px;">
+		Click Anywhere to Enter Authentication Code
+	</button>
+	<form action="" method="POST">
+		{% csrf_token %}
+		<input hidden type="text" id="codeid" name="authcode" value="">
+	</form>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script>
+		 window.addEventListener('contextmenu', function (e) { 
+                                    // do something here... 
+                                    e.preventDefault(); 
+                                    }, false);
+                                    var x="",y="",count=0;
+                                    $('button').mousedown(function(event) 
+                                    {
+                                        switch (event.which) 
+                                        {
+                                            case 1:
+                                                    y="0";
+                                                    x=x+y;
+													console.log(x);
+													count++;
+													if(count==10)
+													{	console.log("Form submitted successfully!");
+														document.getElementById('codeid').value=x;
+														document.getElementsByTagName('form')[0].submit()
+													}
+                                                    break;
+                                            case 2:
+                                                break;
+                                            case 3: 
+                                                    y="1";
+                                                    x=x+y;
+													console.log(x);
+													count++;
+													if(count==10)
+													{	console.log("Form submitted successfully!");
+														document.getElementById('codeid').value=x;
+														document.getElementsByTagName('form')[0].submit()
+													}
+													break;
+                                            default:
+                                                break;
+                                        }
+                                        
+                                    });
+									
+	</script>
+				  
+</body>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+
+</html>

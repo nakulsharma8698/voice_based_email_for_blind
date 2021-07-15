@@ -1,0 +1,98 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Voice Based Email</title>
+     <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/compose.css' %}">
+    <script src="https://kit.fontawesome.com/a076d05399.js"> </script>
+
+</head>
+<body onload = "SendPostRequestHome(event)">
+	<div class="contain">
+		 <div class="sidebar">
+      <header>VoiceMail</header>
+      <ul>
+        <li>
+          <a href="#"><button class="compose"><i class="fas fa-pencil-alt"></i>Compose Mail</button></a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-inbox"></i>Inbox</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-paper-plane"></i>Sent</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-file"></i>Draft</a>
+        </li>
+        <li>
+          <a href="#"><i class="far fa-trash-alt"></i>Trash</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-cog"></i>Settings</a>
+        </li>
+        <li>
+          <a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </li>
+      </ul>
+    </div>
+    
+	<div class="composemail">
+		<h2 style="margin-left:20px">Compose</h2><br>
+		<form class="message">
+			<h3 class="top">New Message</h3>
+		<ul>
+		<li><input type="email" name="reciever" placeholder="To: "></input></li>
+		<li><input class="sub" type="text" name="subject" placeholder="Subject: "></input></li><br><br>
+		<li><textarea type="textarea" class="area" name="body" placeholder="Enter your Message here "></textarea></li>
+	</ul>
+	<button type="submit" class="send">Send</button>
+		</form>
+	</div>
+	</div>
+	
+</body>
+
+<!--===============================================================================================-->
+<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+
+<!--===============================================================================================-->
+
+<script src="{% static 'js/main.js' %}"></script>
+
+<script>
+  function SendPostRequestHome(event){
+    $.ajax({
+    url: "{% url 'myapp:compose' %}",
+    method: 'POST',
+    data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+    success: function (data) {
+      if(data.result == 'success'){
+        window.location = "{% url 'myapp:home' %}";
+      }
+
+      else if(data.result == 'rewrite'){
+        window.location = "{% url 'myapp:compose' %}";
+      }
+      
+    }
+  });
+  }
+  </script>
+
+</html>

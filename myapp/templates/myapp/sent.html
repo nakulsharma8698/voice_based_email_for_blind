@@ -1,0 +1,131 @@
+{% load static %}
+{% load widget_tweaks %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="utf-8" />
+	<title>VoiceMail</title>
+	<link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" />
+	<link rel="stylesheet" href="{% static 'css/inbox.css' %}" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+
+	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+	<style>
+		.table {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			max-width: 0;
+			/*  */
+		}
+	</style>
+</head>
+
+<body onload = "SendPostRequestHome(event)">
+
+	<div class="contain">
+		<div class="row">
+			<div class="sidebar col">
+				<header>{{userobj.email}}</header>
+				<ul>
+					<li>
+						<a href="compose.html"><button class="compose"><i class="fas fa-pencil-alt"></i>Compose Mail</button></a>
+					</li>
+					<li>
+						<a href="#"><i class="fas fa-inbox"></i>Inbox</a>
+					</li>
+					<li>
+						<a href="#"><i class="fas fa-paper-plane"></i>Sent</a>
+					</li>
+					<li>
+						<a href="#"><i class="fas fa-file"></i>Draft</a>
+					</li>
+					<li>
+						<a href="#"><i class="far fa-trash-alt"></i>Trash</a>
+					</li>
+					<li>
+						<a href="#"><i class="fas fa-cog"></i>Settings</a>
+					</li>
+					<li>
+						<a href="{% url 'myapp:logout' %}"><i class="fas fa-sign-out-alt"></i>Logout</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="inbox col float-right">
+				<div>
+					<h2>{{page_heading}}</h2>
+				</div><br>
+				<table class="table table-striped ">
+					<tbody>
+						{% for mails in MailList%}
+
+						<tr class="mail">
+							<th scope="row"></th>
+							<td class="name">{{mails.senderName}}</td>
+							<td>{{mails.subject}}</td>
+							<td class="date">{{mails.date}}</td>
+							<td><i class="far fa-trash-alt"></i></td>
+						</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+		crossorigin="anonymous"></script>
+
+</body>
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+
+	<script src="{% static 'js/main.js' %}"></script>
+
+	<script>
+		function SendPostRequestHome(event){
+			$.ajax({
+			url: "{% url 'myapp:sent' %}",
+			method: 'POST',
+			data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+			success: function (data) {
+				if(data.result == 'delete'){
+					window.location = "{% url 'myapp:sent' %}";
+
+				}
+				else if(data.result == 'read'){
+					console.log(data.id);
+					window.location = '/read_sent/'+data.id ;
+
+				}
+				else if(data.result == 'trash'){
+					console.log(data.id);
+					window.location = '/read_trash/'+data.id ;
+
+				}
+			}
+		});
+		}
+		</script>
+
+</html>
+

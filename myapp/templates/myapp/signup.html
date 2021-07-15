@@ -1,0 +1,118 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sign Up</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+	<script src="{% static '/js/script.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+
+</head>
+<body onload = "SendPostRequestHome(event)">
+
+    <div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static '/images/img-01.png' %}" alt="IMG">
+				</div>
+                <form method="POST" class="login100-form validate-form">
+                    {% csrf_token %}
+					<span class="login100-form-title">
+						Sign Up
+					</span>
+
+
+                    {% for field in form %}
+					<div class="wrap-input100 validate-input">
+									<span class="focus-input100"></span>
+                                    {% render_field field class="input100" class="fa fa-envelope" aria-hidden="true"%}
+									<span class="focus-input100"></span>
+
+                                    {% for error in field.errors %}
+                                    <p style="color: red">{{error}}</p>
+                                    {% endfor %}
+					</div>
+                    {% endfor %}
+
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Signup
+						</button>
+					</div>
+
+                    <br>
+                    <center>
+                        Existing User?
+					<button>
+                        <a href="{% url 'myapp:login' %}"> Login</a>
+                    </button>
+                    </center>
+
+
+
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'vendor/tilt/tilt.jquery.min.js' %}"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="{% static 'js/main.js' %}"></script>
+	<script>
+		function SendPostRequestHome(event){
+			$.ajax({
+			url: "{% url 'myapp:signup' %}",
+			method: 'POST',
+			data: { 'csrfmiddlewaretoken': '{{ csrf_token }}'},
+			success: function (data) {
+				if(data.result == 'success'){
+					window.location = "{% url 'myapp:auth' %}";
+				}
+				else if(data.result == 'failure'){
+					window.location.reload();
+				}
+			}
+		});
+		}
+		</script>
+</body>
+</html>

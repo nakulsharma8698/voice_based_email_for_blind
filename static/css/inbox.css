@@ -1,0 +1,127 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500");
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+.compose
+{
+  background-color: blue;
+  color:white;
+  padding:15px;
+  border-radius: 30px;
+  font-size: 18px;
+  margin: 5px;
+}
+.sidebar {
+  position: relative;
+  width: 250px;
+  height: 100vh;
+  background: #042331;
+  transition: all 0.5s ease;
+  float:right;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+
+}
+.sidebar ul a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.4s;
+}
+ul li:hover a {
+  padding-left: 20px;
+}
+.sidebar ul a i {
+  margin-right: 16px;
+}
+
+section {
+  background: url(/img/bg.jpeg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all 0.5s;
+}
+.contain
+{
+  display: flex;
+}
+.inbox
+{
+  padding: 20px;
+}
+.inbox li
+{
+  display: inline;
+}
+.check
+{
+  font-size:30px;
+  cursor:pointer;
+}
+.inbox ul
+{
+}
+.mail
+{
+  background-color: #f2f2f2;
+  padding:8px;
+  height:22px;
+  width:100%;
+  border-bottom: 1px solid #333;
+
+}
+.mail:hover
+  {
+    background-color: white;
+  }
+.checkmark {
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+}
+.star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+}
+.star:before {
+   content: "\2606";
+   position: absolute;
+   visibility:visible;
+}
+.star:checked:before {
+   content: "\2605";
+   position: absolute;
+}
+.name
+{
+  font-weight: 600;
+  padding-left:50px;
+  padding-right: 50px;
+}
+.date
+{
+  padding-right: 20px;
+  padding-left: 50px;
+}

@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500");
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+body {
+  font-family: "Roboto", sans-serif;
+}
+.compose
+{
+  background-color: blue;
+  color:white;
+  padding:15px;
+  border-radius: 30px;
+  font-size: 18px;
+  margin:5px;
+}
+.sidebar {
+  position: relative;
+  width: 250px;
+  height: 100vh;
+  background: #042331;
+  transition: all 0.5s ease;
+  float:right;
+}
+.sidebar header {
+  font-size: 22px;
+  color: white;
+  line-height: 70px;
+  text-align: center;
+  background: #063146;
+
+}
+.sidebar ul a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  line-height: 65px;
+  font-size: 20px;
+  color: white;
+  padding-left: 40px;
+  box-sizing: border-box;
+  border-bottom: 1px solid black;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: 0.4s;
+}
+ul li:hover a {
+  padding-left: 20px;
+}
+.sidebar ul a i {
+  margin-right: 16px;
+}
+
+section {
+  background: url(/img/bg.jpeg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  transition: all 0.5s;
+}
+.contain
+{
+  display: flex;
+}
+.top
+{
+  background-color: #333;
+  width: 100%;
+  height: 40px;
+  padding-left: 25px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  color: white;
+  font-weight: 500;
+  margin-left: 0;
+  border-radius:10px 10px 0px 0px;
+
+}
+.message
+{
+  width: 700px;
+  height:500px;
+  margin-top:25px;
+  margin-left: 80px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px 5px gray;
+
+}
+input, input:focus, input:active
+{
+  outline: none;
+  border:none;
+  height:40px;
+  width: 90%;
+  padding-left: 20px;
+  font-size: 18px;
+}
+.sub
+{
+  font-weight: 700;
+  border:none;
+  outline:none;
+  height:40px;
+  padding-left: 20px;
+  font-size: 18px;
+}
+.area, .area:focus, .area:active
+{
+  height:250px;
+  position: relative;
+  display: block;
+  padding-left: 20px;
+  font-size: 18px;
+  width:90%;
+  margin-left:20px;
+   outline: none;
+  border:none;
+}
+.send
+{
+  width:80px;
+  height: 40px;
+  padding: 10px;
+  color: white;
+  font-weight: 700px;
+  font-size:18px;
+  background-color: dodgerblue;
+  border:none;
+   box-shadow: 5px 5px 2px 2px gray;
+   border-radius:5px;
+   margin:25px;
+  justify-content: flex-end;
+}

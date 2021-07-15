@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Title -->
+        <title>Authentication Code</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+        <!-- Bootstrap js -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js" integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container-fluid bg-light p-2">
+            <div class="row align-items-center">
+                <div class="col"> 
+                    <div class="d-flex justify-content-center ">
+                        <form action="#" method="#">
+                            <h1 class="d-flex justify-content-center text-danger">Voice Based E-Mail</h1>
+                            <br>
+                            <div class="d-flex justify-content-center">
+                                <labelname="ac" id="ac">Click Left and Right Mouse Button Anywhere To Enter Authentication Code</label>
+                            </div>
+                            <br>
+                            <p class="d-flex justify-content-center" id="demo">Code = </p>
+                            <br>
+                            <p class="d-flex justify-content-center">You are pressing the : <span class="output"></span></p>
+                            <button class="display-1" style="height: 700px; width:1500px;">
+                                Click Here to check the mousebutton pressed
+                            </button>
+                                <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+                                
+                                <script type="text/javascript">
+                                    window.addEventListener('contextmenu', function (e) { 
+                                    // do something here... 
+                                    e.preventDefault(); 
+                                    }, false);
+                                    
+                                    var x="z",y="z";
+                                    $('button').mousedown(function(event) 
+                                    {
+                                        switch (event.which) 
+                                        {
+                                            case 1:
+                                                document.querySelector('.output').innerHTML =
+                                                    'Left Mouse Button';
+                                                    y="0";
+                                                    x=x+y;
+                                                    document.getElementById("demo").innerHTML = "Code = " + x;
+                                                break;
+                                            case 2:
+                                                document.querySelector('.output').innerHTML =
+                                                    'Middle Mouse Button';
+                                                break;
+                                            case 3:
+                                                document.querySelector('.output').innerHTML =
+                                                    'Right Mouse Button';
+                                                    y="1";
+                                                    x=x+y;
+                                                    document.getElementById("demo").innerHTML = "Code = " + x;
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                        
+                                    });
+                                    
+                                </script>
+                            <div class="pt-5 d-flex justify-content-center">
+                                <a href="#" class="d-flex justify-content-center btn btn-outline-primary" type="submit">Log In</a>
+                            </div>
+                            <br>
+                            <br>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
